@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <sys/time.h>
 
 int binarySearch(int array[], int startIndex, int endIndex, int x)
 {
@@ -23,6 +24,8 @@ int binarySearch(int array[], int startIndex, int endIndex, int x)
 
 int main() 
 {
+    struct timeval start, end;
+
     int size, ele;
     printf("Enter the size of an array: ");
     scanf("%d", &size);
@@ -39,11 +42,18 @@ int main()
     scanf("%d", &ele);
     printf("Performing Binary Search algorithm to check whether the number is in the array or not.\n");
     
+    gettimeofday(&start, NULL); 
+    printf("\nTime before function call = %ld microseconds\n", start.tv_usec);
+    
     int res = binarySearch(arr, 0, size-1, ele);
     if (res == -1)
-        printf("\nThe number %d is not in the Array.", ele);
+        printf("The number %d is not in the Array.", ele);
     else 
-        printf("\nThe number %d is present at index %d.\n", ele, res);
+        printf("The number %d is present at index %d.\n", ele, res);
+    
+    gettimeofday(&end, NULL); 
+    printf("Time after function call = %ld microseconds\n", end.tv_usec);
+    printf("\nTotal running time = %ld microseconds\n", end.tv_usec - start.tv_usec);
     
     return 0;
 }
