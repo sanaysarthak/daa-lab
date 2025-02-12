@@ -14,7 +14,7 @@ price = [1, 5, 8, 9, 10, 17, 17, 20, 24, 30]
 user_len = int(input("Enter length: "))
 
 # checking if user_len is valid
-if user_len >= 1 or user_len <= len(price):
+if user_len >= 1 and user_len <= len(price):
 	print("Maximum cost you can get:", cut_rod(price, user_len))
 else:
 	print("Invalid length! Enter value between 1 and", len(price))
